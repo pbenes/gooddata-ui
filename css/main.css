@@ -2243,7 +2243,7 @@ table tbody tr:nth-of-type(odd) {
 .navigationSlider .slidingNav ul li a:focus,
 .navigationSlider .slidingNav ul li a:hover, .navigationSlider .slidingNav ul li.siteNavItemActive a, .navigationSlider .slidingNav ul li.siteNavGroupActive a {
   color: rgba(0, 0, 0, 0.9);
-  background: transparent;
+  background-color: transparent;
   transition: all 100ms ease-in;
 }
 .navigationSlider .slidingNav ul li a:focus,
@@ -2252,6 +2252,19 @@ table tbody tr:nth-of-type(odd) {
 }
 .navigationSlider .slidingNav ul li.siteNavItemActive a, .navigationSlider .slidingNav ul li.siteNavGroupActive a {
   border-bottom-color: #14b2e2;
+}
+.navigationSlider .slidingNav .navSearchWrapper {
+  position: absolute;
+  top: 50%;
+  right: 200px;
+  width: 218px;
+  margin-top: -14px;
+}
+@media only screen and (max-width: 735px) {
+  .navigationSlider .slidingNav .navSearchWrapper {
+    top: 32px;
+    right: 100px;
+  }
 }
 @media only screen and (max-width: 735px) {
   .navigationSlider .slidingNav {
@@ -2264,20 +2277,13 @@ table tbody tr:nth-of-type(odd) {
 }
 @media only screen and (min-width: 736px) {
   .navigationSlider {
-    overflow: hidden;
+    overflow: visible;
   }
   .navigationSlider,
 .navigationSlider nav.slidingNav,
 .navigationSlider .nav-site {
     height: 100%;
   }
-}
-
-.navSearchWrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 218px;
 }
 
 .navPusher {
@@ -2521,6 +2527,15 @@ nav.toc .toggleNav .navToggle i::before, nav.toc .toggleNav .navToggle i::after 
   .reactNavSearchWrapper {
     top: 15px;
   }
+  .reactNavSearchWrapper,
+.reactNavSearchWrapper input#search_input_react {
+    max-width: calc(100vw - 280px);
+  }
+}
+@media only screen and (max-width: 360px) {
+  .reactNavSearchWrapper {
+    display: none;
+  }
 }
 .reactNavSearchWrapper input#search_input_react {
   height: 28px;
@@ -2531,10 +2546,118 @@ nav.toc .toggleNav .navToggle i::before, nav.toc .toggleNav .navToggle i::after 
   width: 234px;
   padding: 0 1rem;
   color: #464e56;
-  background: #ddd;
+  background: rgba(221, 221, 221, 0.5);
 }
 .reactNavSearchWrapper input#search_input_react::placeholder {
   color: #94a1ad;
+}
+.reactNavSearchWrapper .aa-dropdown-menu {
+  padding: 20px;
+  border: 1px solid #dde4eb;
+  border-radius: 3px;
+  box-shadow: 0 1px 20px 0 rgba(20, 57, 93, 0.2);
+  background-color: #fff;
+}
+.reactNavSearchWrapper .aa-dropdown-menu::before, .reactNavSearchWrapper .aa-dropdown-menu::after {
+  content: "";
+  position: absolute;
+  right: 100px;
+  border: 10px solid transparent;
+}
+.reactNavSearchWrapper .aa-dropdown-menu::before {
+  top: -20px;
+  border-bottom-color: #dde4eb;
+}
+.reactNavSearchWrapper .aa-dropdown-menu::after {
+  top: -19px;
+  border-bottom-color: #fff;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--category-header,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--subcategory-column,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--content,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-footer {
+  border: none;
+  background-color: transparent;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--category-header {
+  padding: 15px 0;
+  border-top: 1px solid #dde4eb;
+  color: #000;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .aa-suggestion:first-child .algolia-docsearch-suggestion--category-header,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion__main .algolia-docsearch-suggestion--content,
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion__secondary {
+  border-top: none;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .aa-suggestion:first-child .algolia-docsearch-suggestion--category-header {
+  padding-top: 0;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--title {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 22px;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--content {
+  padding: 5px 10px;
+  border-top: 1px solid #dde4eb;
+  color: #464e56;
+  line-height: 20px;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--text {
+  padding: 0;
+  font-size: 14px;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-suggestion--subcategory-column {
+  padding: 5px 0;
+  font-size: 16px;
+  text-align: left;
+  line-height: 22px;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-footer {
+  padding: 15px 0 0;
+  border-top: 1px solid #dde4eb;
+}
+.reactNavSearchWrapper .aa-dropdown-menu .algolia-docsearch-footer--logo {
+  height: 15px;
+  margin: 0;
+  border: none;
+  line-height: inherit;
+}
+@media only screen and (max-width: 735px) {
+  .reactNavSearchWrapper .aa-dropdown-menu {
+    width: 90%;
+    right: 5% !important;
+    left: 5% !important;
+    position: fixed !important;
+    top: auto !important;
+    max-height: 90vh;
+  }
+}
+.reactNavSearchWrapper .aa-cursor .algolia-docsearch-suggestion--title {
+  color: #000;
+}
+.reactNavSearchWrapper .aa-cursor .algolia-docsearch-suggestion--content {
+  color: #464e56;
+  background-color: #e8edf3;
+}
+.reactNavSearchWrapper .algolia-docsearch-suggestion--highlight {
+  color: #14b2e2;
+}
+.reactNavSearchWrapper .aa-suggestion-title-separator {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  width: 4px;
+  height: 7px;
+  margin: 0 5px;
+  font-size: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg width="4" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M0 8.166992l3.87988-3.534114L0 1.461174" stroke="#94A1AE" fill="none" fill-rule="evenodd"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 code {

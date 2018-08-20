@@ -49,11 +49,12 @@
        document.getElementById('root')
      );
    } else {
-     window.location.replace(`${domain}/account.html?lastUrl=${window.location}`);
+     window.location.replace(`${domain}/account.html?lastUrl=${encodeURIComponent(window.location)}`);
    }
  };
  ```
-</code></pre></li>
+</code></pre>
+<p><strong>NOTE:</strong> If you want to pass multiple arguments in <code>lastUrl</code>, protect them by using <code>encodeURIComponent</code>.</p></li>
 <li><p>If the user is not logged in, the application redirects the user to the GoodData login page (white-labeled with your domain name) with the appended <code>lastUrl</code> parameter that points to the URL where your analytical application runs:</p>
 <p><code>https://my.company.com/account.html?lastUrl=https://my.app.com/</code></p></li>
 <li><p>The user logs in to the GoodData Portal.</p></li>

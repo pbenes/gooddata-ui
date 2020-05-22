@@ -27,7 +27,7 @@ function getLatestStable(versions) {
 function getVersionsOfType(type, versions) {
   return versions.filter(v => {
     const versionSplit = v.split('-');
-    
+
     return versionSplit.length >= 2 && versionSplit[1] === type;
   })
 }
@@ -76,6 +76,15 @@ class Versions extends React.Component {
 
     return (<td>&mdash;</td>);
   }
+  renderSupported(version) {
+    if (version.match(/7.5.0/)) {
+        return (<td>This version is withdrawn.</td>);
+    }
+    if (version.match(/^7./) || version.match(/^6./)) {
+        return (<td></td>);
+    }
+    return (<td>This version is not supported.</td>);
+  }
 
   renderStableVersions() {
     const stableVersions = getStableVersions(versions);
@@ -96,6 +105,7 @@ class Versions extends React.Component {
                         </td>
                         { this.renderChangelog(version) }
                         { this.renderMigrationGuide(version) }
+                        { this.renderSupported(version) }
                       </tr>
                     )
                 )}
@@ -106,7 +116,7 @@ class Versions extends React.Component {
     }
 
     return null;
-  } 
+  }
 
   renderPreReleaseVersions() {
     const preReleaseVersions = getVersionsOfType('alpha', versions);
@@ -127,6 +137,7 @@ class Versions extends React.Component {
                           </td>
                           { this.renderChangelog(version) }
                           { this.renderMigrationGuide(version) }
+                          { this.renderSupported(version) }
                         </tr>
                       )
                   )}
@@ -149,6 +160,14 @@ class Versions extends React.Component {
             <header className="postHeader">
               <h2>{siteConfig.title + ' Versions'}</h2>
             </header>
+            <div>
+            At any given moment, GoodData supports the following versions of GoodData.UI:
+            <ul>
+                <li>The latest major version: This version receives all new features. All issues get fixed.</li>
+                <li>The previous major version: This version receives only security fixes and fixes for critical issues. These fixes will be applied on top of the last minor version released in the previous major version.</li>
+            </ul>
+            All versions older that the previous major version are considered deprecated.
+            </div>
             <h3 id="latest">Current version (Stable)</h3>
             <table className="versions">
               <tbody>
@@ -159,6 +178,7 @@ class Versions extends React.Component {
                   </td>
                   { this.renderChangelog(latestVersion) }
                   { this.renderMigrationGuide(latestVersion) }
+                  { this.renderSupported(latestVersion) }
                 </tr>
               </tbody>
             </table>
